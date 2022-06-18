@@ -143,7 +143,7 @@ def get_parser():
     parser.add_argument(
         '--use_wandb', default=True, type=str2bool, const=True, nargs='?')
     parser.add_argument(
-        '--num_test_runs', default=10, type=int,
+        '--num_test_runs', default=5, type=int,
         help="Number of test run to average")
     parser.add_argument(
         '--fast_debug', '-fd', default=False, type=str2bool, const=True,
