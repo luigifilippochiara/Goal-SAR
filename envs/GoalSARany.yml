@@ -1,0 +1,22 @@
+name: GoalSAR
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python
+  - torchvision
+  - pytorch
+  - scipy
+  - pandas
+  - jupyter
+  - tensorboard
+  - wandb
+  - matplotlib
+  - pyyaml
+  - gitpython
+  - tqdm
+  - segmentation-models-pytorch
+  - opencv-python
+  - nbstripout
+  - albumentations
+prefix: /opt/anaconda3/envs/GoalSAR
