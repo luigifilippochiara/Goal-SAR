@@ -171,7 +171,7 @@ It is meant to be as generic and reusable as possible. The content of `parser.py
 
 The `model` folder contains a `base_model.py` class from which all the models inherit.
 
-The `data_src` folder contains some reusable code for data preparation and pre-processing. Every dataset is made of a dataset object (`dataset_src`) which is nothing but a dictionary of scenes, many scene objects (`dataset_src`) representing individual scenes with methods to go from world to pixel coordinates and vice versa, and an experiment object (`experiment_src`) containing metadata about the experiment to be performed and train-test splits. The trajectory data is loaded inside the experiment class and then pre-processed with the code from `data_pre_process.py`.
+The `data_src` folder contains some reusable code for data preparation and pre-processing. Every dataset is made of a dataset object (`dataset_src`) which is nothing but a dictionary of scenes, many scene objects (`scene_src`) representing individual scenes with methods to go from world to pixel coordinates and vice versa, and an experiment object (`experiment_src`) containing metadata about the experiment to be performed and train-test splits. The trajectory data is loaded inside the experiment class and then pre-processed with the code from `data_pre_process.py`.
 
 ## Wandb
 
