@@ -1,9 +1,9 @@
 # Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction
 
 [![arXiv](https://img.shields.io/badge/arXiv-2204.11561-red)](https://arxiv.org/abs/2204.11561)
-[![arXiv](https://img.shields.io/badge/-CVPRw-yellow)](https://sites.google.com/view/ieeecvf-cvpr2022-precognition)
+[![arXiv](https://img.shields.io/badge/-CVPRW-yellow)](https://sites.google.com/view/ieeecvf-cvpr2022-precognition)
 
-This repository hosts the official code related to the CVPRw paper *"Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction"* by Luigi Filippo Chiara, Pasquale Coscia, Sourav Das, Simone Calderara, Rita Cucchiara and Lamberto Ballan.
+This repository hosts the official code related to the CVPRW paper *"Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction"* by Luigi Filippo Chiara, Pasquale Coscia, Sourav Das, Simone Calderara, Rita Cucchiara and Lamberto Ballan.
 [[Download paper](https://openaccess.thecvf.com/content/CVPR2022W/Precognition/papers/Chiara_Goal-Driven_Self-Attentive_Recurrent_Networks_for_Trajectory_Prediction_CVPRW_2022_paper.pdf)]
 
 
