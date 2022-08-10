@@ -3,8 +3,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2204.11561-red)](https://arxiv.org/abs/2204.11561)
 [![arXiv](https://img.shields.io/badge/-CVPRw-yellow)](https://sites.google.com/view/ieeecvf-cvpr2022-precognition)
 
-This repository hosts the official code related to *"Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction"*, Luigi Filippo Chiara, Pasquale Coscia, Sourav Das, Simone Calderara,
-Rita Cucchiara and Lamberto Ballan.
+This repository hosts the official code related to the CVPRw paper *"Goal-driven Self-Attentive Recurrent Networks for Trajectory Prediction"* by Luigi Filippo Chiara, Pasquale Coscia, Sourav Das, Simone Calderara, Rita Cucchiara and Lamberto Ballan.
 [[Download paper](https://openaccess.thecvf.com/content/CVPR2022W/Precognition/papers/Chiara_Goal-Driven_Self-Attentive_Recurrent_Networks_for_Trajectory_Prediction_CVPRW_2022_paper.pdf)]
 
 
@@ -14,7 +13,7 @@ Rita Cucchiara and Lamberto Ballan.
 
 
 If you use the code/models of this repo and find this project useful 
-please cite our paper and consider giving a star ⭐!
+please cite our paper and consider giving us a star ⭐!
 
 
 ```bibtex
@@ -105,7 +104,7 @@ $ python main.py \
 	--load_checkpoint 'best' \
 ```
 
-For simplicity we provide the testing scripts for the `sdd` dataset in the `scripts` folder. Specifically, you will find:
+For simplicity, we provide the testing scripts for the `sdd` dataset in the `scripts` folder. Specifically, you will find:
 
 - `test_SAR.sh`
 - `test_Goal-SAR.sh`
@@ -123,7 +122,7 @@ The default setting is to train on the `sdd` dataset.
 
 Pre-processed data and batches will be saved in `./output/{dataset_name}/` by default. Model checkpoints and outputs will be saved in `./output/{dataset_name}/{model_name}/`.
 
-For simplicity we provide the training scripts for the `sdd` dataset in the `scripts` folder. Specifically, you will find:
+For simplicity, we provide the training scripts for the `sdd` dataset in the `scripts` folder. Specifically, you will find:
 
 - `train_SAR.sh`
 - `train_Goal-SAR.sh`
@@ -149,7 +148,7 @@ Priority: command line \> configuration files \> default values in script.
 
 ### Example of training
 
-The following command is to train our `SAR` model on the `eth5` dataset and to test it on the `hotel` scene. The model will train for 300 epochs with a batch size of 128 pedestrians. In the end, the model yielding the best ADE will be tested on the test set.
+The following command is used to train the `SAR` model on the `eth5` dataset and to test it on the `hotel` scene. The model will train for 300 epochs with a batch size of 128 pedestrians. In the end, the model yielding the best ADE will be tested on the test set.
 
 ```
 $ python main.py \
