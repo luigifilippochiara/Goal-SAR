@@ -15,7 +15,7 @@ class Scene_eth5(Scene_base):
         self.dataset_folder = os.path.join(
             self.path_to_root, "data", self.dataset_name)
         self.semantic_map_gt_name = f"{self.name}_mask.png"
-        self.has_semantic_map_pred = False
+        self.has_semantic_map_pred = True
 
         self.frames_per_second = 2.5
         self.delta_frame = 6 if self.name == 'eth' else 10
