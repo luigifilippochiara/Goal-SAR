@@ -33,6 +33,8 @@ class trainer(object):
         self.best_metrics = self.net.init_best_metrics()
         self.best_metrics_epochs = {k: -1 for k in self.best_metrics.keys()}
 
+        self.test_run = 0
+
     def _initialize_network(self, model_name: str):
         """
         Import and initialize the requested model
@@ -255,7 +257,7 @@ class trainer(object):
         print(f'*** {phase_name} phase started ***')
         print(f"Starting epoch: {start_epoch}, final epoch: {end_epoch}")
 
-        if self.args.use_wandb:
+        if wandb.run is None and self.args.use_wandb:
             wandb.init(settings=wandb.Settings(start_method="thread"),
                        project="GoalSAR", config=self.args, entity="vimp_traj",
                        group=f"{self.args.dataset}",
@@ -492,6 +494,13 @@ class trainer(object):
         losses_epoch = self.net.init_losses()
         metrics_epoch = self.net.init_test_metrics()
 
+        if wandb.run is None and self.args.use_wandb:
+            wandb.init(settings=wandb.Settings(start_method="thread"),
+                       project="GoalSAR", config=self.args, entity="vimp_traj",
+                       group=f"{self.args.dataset}",
+                       job_type=f"{self.args.test_set}",
+                       tags=None, name=None)
+
         # Progress bar
         evaluate_bar = tqdm(self.data_loaders[mode], ascii=True, ncols=100,
                             desc=f'Epoch {epoch}. {mode.title()} batches')
@@ -533,7 +542,7 @@ class trainer(object):
             for loss_name, loss_value in losses.items():
                 losses_epoch[loss_name] += loss_value.item()
 
-            if self.args.use_wandb and if_plot and mode == 'valid':
+            if self.args.use_wandb and if_plot and (mode == 'valid' or mode == 'test'):
                 fig, ax = plt.subplots(figsize=(12, 6))
                 ax.imshow(inputs['tensor_image'][0:3].permute(1, 2, 0).\
                           detach().cpu().numpy())
@@ -550,22 +559,36 @@ class trainer(object):
                         ground_truth[:, 0, 1].detach().cpu().numpy(),
                         color="white", label='GT')
                 plt.legend(loc='best')
-                plt.savefig('images/test_traj.png')
-                wandb.log({"test/traj_image": wandb.Image(fig)}, step=epoch)
-                plt.close()
+                maybe_makedir("images")
+                if mode == 'valid':
+                    plt.savefig('images/valid_traj.png')
+                    wandb.log({"valid/valid_image": wandb.Image(fig)}, step=epoch)
+                    plt.close()
+                if mode == 'test':
+                    plt.savefig('images/test_traj.png')
+                    wandb.log({"test/traj_image": wandb.Image(fig)}, step=self.test_run)
+                    plt.close()
 
-                if "goal_logit_map_goal_0" in all_aux_outputs.keys():
+                if "goal_logit_map" in all_aux_outputs.keys():
                     fig, ax = plt.subplots(1, 2, figsize=(12, 6))
                     prob_maps_GT = inputs["input_traj_maps"][:, self.args.obs_length:].detach().cpu().numpy()
                     prob_map = torch.sigmoid(all_aux_outputs[
-                        f"goal_logit_map_goal_0"]).detach().cpu().numpy()
+                        f"goal_logit_map"]).detach().cpu().numpy()
                     ax[0].imshow(prob_maps_GT[0, -1])
                     ax[1].imshow(prob_map[0, 0, -1])
-                    plt.savefig('images/test_goal.png')
-                    wandb.log({"test/goal_image": wandb.Image(fig)},
-                              step=epoch)
-                    plt.close()
 
+                    if mode == 'valid':
+                        plt.savefig('images/valid_goal.png')
+                        wandb.log({"valid/goal_image": wandb.Image(fig)}, step=epoch)
+                        plt.close()
+                    if mode == 'test':
+                        plt.savefig('images/test_goal.png')
+                        wandb.log({"test/goal_image": wandb.Image(fig)}, step=self.test_run)
+                        plt.close()
+
+                if mode == 'test':
+                    self.test_run += 1
+            
             # update metrics
             for metric_name in metrics_epoch.keys():
                 metrics_epoch[metric_name].extend(
