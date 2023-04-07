@@ -34,7 +34,7 @@ please cite our paper and consider giving us a star ⭐!
 - **[2022/06/19]** - Workshop presentation.
 - **[2022/06/18]** - The code is finally online!
 - **[2022/04/20]** - Our paper is on arXiv! Here is the [link](https://arxiv.org/abs/2204.11561)
-- **[2022/04/15]** - The paper has been accepted to the [CVPR-2022 Precognition: Seeing Through the Future workshop](https://sites.google.com/view/ieeecvf-cvpr2022-precognition)
+- **[2022/04/15]** - The paper has been accepted to the [CVPR-2022 Precognition workshop](https://sites.google.com/view/ieeecvf-cvpr2022-precognition)
 
 
 # Install
